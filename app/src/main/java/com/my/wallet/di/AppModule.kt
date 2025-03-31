@@ -3,15 +3,26 @@ package com.my.wallet.di
 import android.content.Context
 import com.my.wallet.data.WalletDatabase
 import com.my.wallet.data.repository.WalletRepository
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
+@Module
+@InstallIn(SingletonComponent::class)
 object AppModule {
-    private var repository: WalletRepository? = null
+    
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): WalletDatabase {
+        return WalletDatabase.getDatabase(context)
+    }
 
-    fun provideRepository(context: Context): WalletRepository {
-        return repository ?: synchronized(this) {
-            repository ?: WalletRepository(
-                WalletDatabase.getDatabase(context)
-            ).also { repository = it }
-        }
+    @Provides
+    @Singleton
+    fun provideRepository(database: WalletDatabase): WalletRepository {
+        return WalletRepository(database)
     }
 } 

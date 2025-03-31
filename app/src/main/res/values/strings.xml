@@ -7,4 +7,21 @@
     <string name="settings">Настройки</string>
     <string name="add_transaction">Добавить операцию</string>
     <string name="current_balance">Текущий баланс</string>
+    <string name="recent_transactions">Последние операции</string>
+    <string name="amount">Сумма</string>
+    <string name="income">Доход</string>
+    <string name="expense">Расход</string>
+    <string name="category">Категория</string>
+    <string name="account">Счет</string>
+    <string name="note">Заметка</string>
+    <string name="save">Сохранить</string>
+    <string name="add_account">Добавить счет</string>
+    <string name="no_accounts">Нет счетов. Добавьте новый счет</string>
+    <string name="account_name">Название счета</string>
+    <string name="account_type">Тип счета</string>
+    <string name="account_type_cash">Наличные</string>
+    <string name="account_type_card">Карта</string>
+    <string name="account_type_savings">Сбережения</string>
+    <string name="currency">Валюта</string>
+    <string name="initial_balance">Начальный баланс</string>
 </resources>

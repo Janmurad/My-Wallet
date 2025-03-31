@@ -1,14 +1,16 @@
 package com.my.wallet.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.my.wallet.data.repository.WalletRepository
 import com.my.wallet.model.Account
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AccountsViewModel(
+@HiltViewModel
+class AccountsViewModel @Inject constructor(
     private val repository: WalletRepository
 ) : ViewModel() {
 
@@ -39,7 +41,7 @@ class AccountsViewModel(
             try {
                 repository.deleteAccount(account)
             } catch (e: Exception) {
-                _uiState.value = _uiState.value.copy(error = e.message)
+                _uiState.update { it.copy(error = e.message) }
             }
         }
     }
@@ -49,11 +51,4 @@ class AccountsViewModel(
         val isLoading: Boolean = false,
         val error: String? = null
     )
-
-    class Factory(private val repository: WalletRepository) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return AccountsViewModel(repository) as T
-        }
-    }
 } 

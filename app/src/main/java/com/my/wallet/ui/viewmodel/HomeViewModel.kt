@@ -1,7 +1,6 @@
 package com.my.wallet.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.my.wallet.data.repository.WalletRepository
 import com.my.wallet.model.Account
@@ -9,8 +8,11 @@ import com.my.wallet.model.Transaction
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val repository: WalletRepository
 ) : ViewModel() {
 
@@ -42,11 +44,4 @@ class HomeViewModel(
         val isLoading: Boolean = false,
         val error: String? = null
     )
-
-    class Factory(private val repository: WalletRepository) : ViewModelProvider.Factory {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModel(repository) as T
-        }
-    }
 } 
