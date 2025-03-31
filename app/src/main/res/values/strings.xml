@@ -24,4 +24,18 @@
     <string name="account_type_savings">Сбережения</string>
     <string name="currency">Валюта</string>
     <string name="initial_balance">Начальный баланс</string>
+    <string name="theme">Тема</string>
+    <string name="theme_system">Системная</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="language">Язык</string>
+    <string name="language_system">Системный</string>
+    <string name="language_ru">Русский</string>
+    <string name="language_en">English</string>
+    <string name="default_currency">Валюта по умолчанию</string>
+    <string name="monthly_summary">Итоги месяца</string>
+    <string name="monthly_income">Доход за месяц</string>
+    <string name="monthly_expense">Расход за месяц</string>
+    <string name="daily_expenses">Расходы по дням</string>
+    <string name="category_expenses">Расходы по категориям</string>
 </resources>

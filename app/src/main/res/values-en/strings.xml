@@ -24,4 +24,18 @@
     <string name="account_type_savings">Savings</string>
     <string name="currency">Currency</string>
     <string name="initial_balance">Initial balance</string>
+    <string name="theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="language">Language</string>
+    <string name="language_system">System</string>
+    <string name="language_ru">Russian</string>
+    <string name="language_en">English</string>
+    <string name="default_currency">Default currency</string>
+    <string name="monthly_summary">Monthly Summary</string>
+    <string name="monthly_income">Monthly Income</string>
+    <string name="monthly_expense">Monthly Expense</string>
+    <string name="daily_expenses">Daily Expenses</string>
+    <string name="category_expenses">Category Expenses</string>
 </resources> 

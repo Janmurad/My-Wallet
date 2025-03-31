@@ -56,11 +56,8 @@ fun WalletApp() {
                 TopAppBar(
                     title = { Text(text = stringResource(R.string.app_name)) },
                     actions = {
-                        IconButton(onClick = { /* TODO: Settings */ }) {
-                            Icon(
-                                Icons.Default.Settings,
-                                contentDescription = stringResource(R.string.settings)
-                            )
+                        IconButton(onClick = { navController.navigate(Screen.Settings.route) }) {
+                            Icon(Icons.Default.Settings, contentDescription = null)
                         }
                     }
                 )
@@ -130,6 +127,9 @@ fun WalletApp() {
                 AddAccountScreen(
                     onNavigateBack = { navController.popBackStack() }
                 )
+            }
+            composable(Screen.Settings.route) {
+                SettingsScreen()
             }
         }
     }

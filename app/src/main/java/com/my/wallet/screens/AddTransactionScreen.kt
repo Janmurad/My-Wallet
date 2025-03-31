@@ -16,7 +16,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.my.wallet.R
 import com.my.wallet.model.AccountType
 import com.my.wallet.model.TransactionType
-import com.my.wallet.ui.LocalWalletApplication
 import com.my.wallet.ui.viewmodel.AddTransactionViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

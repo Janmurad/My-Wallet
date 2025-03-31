@@ -16,7 +16,6 @@ import com.my.wallet.R
 import com.my.wallet.model.Account
 import com.my.wallet.model.Transaction
 import com.my.wallet.model.TransactionType
-import com.my.wallet.ui.LocalWalletApplication
 import com.my.wallet.ui.viewmodel.HomeViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
