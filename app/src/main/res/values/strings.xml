@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Wallet</string>
+    <string name="app_name">Карманный бухгалтер</string>
+    <string name="home">Главная</string>
+    <string name="statistics">Статистика</string>
+    <string name="accounts">Счета</string>
+    <string name="settings">Настройки</string>
+    <string name="add_transaction">Добавить операцию</string>
+    <string name="current_balance">Текущий баланс</string>
 </resources>
