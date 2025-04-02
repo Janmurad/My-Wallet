@@ -29,8 +29,21 @@ fun AccountsScreen(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddAccountClick) {
-                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.add_account))
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SmallFloatingActionButton(
+                    onClick = onAddAccountClick,
+                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                ) {
+                    Icon(
+                        Icons.Default.AddCircle,
+                        contentDescription = stringResource(R.string.add_account)
+                    )
+                }
             }
         }
     ) { padding ->
@@ -41,10 +54,24 @@ fun AccountsScreen(
                     .padding(padding),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = stringResource(R.string.no_accounts),
-                    style = MaterialTheme.typography.bodyLarge
-                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.no_accounts),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+                    Button(onClick = onAddAccountClick) {
+                        Icon(
+                            Icons.Default.Add,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = stringResource(R.string.add_account))
+                    }
+                }
             }
         } else {
             LazyColumn(

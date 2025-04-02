@@ -38,4 +38,5 @@
     <string name="monthly_expense">Monthly Expense</string>
     <string name="daily_expenses">Daily Expenses</string>
     <string name="category_expenses">Category Expenses</string>
+    <string name="select_language">Select language</string>
 </resources> 

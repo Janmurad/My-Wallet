@@ -122,7 +122,7 @@ private fun TransactionsList(transactions: List<Transaction>) {
 }
 
 @Composable
-private fun TransactionItem(transaction: Transaction) {
+internal fun TransactionItem(transaction: Transaction) {
     val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
     
     Card(

@@ -1,9 +1,11 @@
 package com.my.wallet
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -36,6 +38,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WalletApp() {
@@ -46,6 +49,8 @@ fun WalletApp() {
         Screen.Statistics.route -> Screen.Statistics
         Screen.Accounts.route -> Screen.Accounts
         Screen.AddTransaction.route -> Screen.AddTransaction
+        Screen.Categories.route -> Screen.Categories
+        Screen.Calendar.route -> Screen.Calendar
         else -> Screen.Home
     }
     
@@ -64,7 +69,7 @@ fun WalletApp() {
             }
         },
         bottomBar = {
-            if (currentScreen != Screen.AddTransaction) {
+            if (currentScreen !in listOf(Screen.AddTransaction, Screen.AddAccount)) {
                 NavigationBar {
                     NavigationBarItem(
                         selected = currentScreen == Screen.Home,
@@ -75,19 +80,20 @@ fun WalletApp() {
                     NavigationBarItem(
                         selected = currentScreen == Screen.Statistics,
                         onClick = { navController.navigate(Screen.Statistics.route) },
-                        icon = {
-                            Image(
-                                modifier = Modifier.size(40.dp),
-                                painter = painterResource(R.drawable.pie_chart), contentDescription = null)
-                        },
+                        icon = { Icon(Icons.Default.Star, contentDescription = null) },
                         label = { Text(stringResource(R.string.statistics)) }
                     )
                     NavigationBarItem(
-                        selected = currentScreen == Screen.Accounts,
-                        onClick = { navController.navigate(Screen.Accounts.route) },
-                        icon = { Image(
-                            modifier = Modifier.size(40.dp),painter = painterResource(R.drawable.wallet), contentDescription = null) },
-                        label = { Text(stringResource(R.string.accounts)) }
+                        selected = currentScreen == Screen.Calendar,
+                        onClick = { navController.navigate(Screen.Calendar.route) },
+                        icon = { Icon(Icons.Default.DateRange, contentDescription = null) },
+                        label = { Text(stringResource(R.string.calendar)) }
+                    )
+                    NavigationBarItem(
+                        selected = currentScreen == Screen.Categories,
+                        onClick = { navController.navigate(Screen.Categories.route) },
+                        icon = { Icon(Icons.Default.Info, contentDescription = null) },
+                        label = { Text(stringResource(R.string.categories)) }
                     )
                 }
             }
@@ -130,6 +136,12 @@ fun WalletApp() {
             }
             composable(Screen.Settings.route) {
                 SettingsScreen()
+            }
+            composable(Screen.Categories.route) {
+                CategoriesScreen()
+            }
+            composable(Screen.Calendar.route) {
+                CalendarScreen()
             }
         }
     }

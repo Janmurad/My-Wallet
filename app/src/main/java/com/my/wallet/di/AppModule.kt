@@ -3,6 +3,7 @@ package com.my.wallet.di
 import android.content.Context
 import com.my.wallet.data.WalletDatabase
 import com.my.wallet.data.repository.WalletRepository
+import com.my.wallet.data.PreferencesDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +25,11 @@ object AppModule {
     @Singleton
     fun provideRepository(database: WalletDatabase): WalletRepository {
         return WalletRepository(database)
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferencesDataStore(@ApplicationContext context: Context): PreferencesDataStore {
+        return PreferencesDataStore(context)
     }
 } 

@@ -38,4 +38,15 @@
     <string name="monthly_expense">Расход за месяц</string>
     <string name="daily_expenses">Расходы по дням</string>
     <string name="category_expenses">Расходы по категориям</string>
+    <string name="categories">Категории</string>
+    <string name="add_category">Добавить категорию</string>
+    <string name="category_name">Название категории</string>
+    <string name="select_icon">Выберите иконку</string>
+    <string name="select_color">Выберите цвет</string>
+    <string name="cancel">Отмена</string>
+    <string name="calendar">Календарь</string>
+    <string name="select_date">Выберите дату</string>
+    <string name="daily_total">Итого за день</string>
+    <string name="no_transactions">Нет транзакций за этот день</string>
+    <string name="select_language">Выберите язык</string>
 </resources>

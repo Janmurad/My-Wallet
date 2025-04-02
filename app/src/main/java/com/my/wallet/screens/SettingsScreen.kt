@@ -3,6 +3,7 @@ package com.my.wallet.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -21,12 +22,13 @@ fun SettingsScreen(
     var isThemeMenuExpanded by remember { mutableStateOf(false) }
     var isLanguageMenuExpanded by remember { mutableStateOf(false) }
     var isCurrencyMenuExpanded by remember { mutableStateOf(false) }
+    var showLanguageDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         // Тема
         ExposedDropdownMenuBox(
@@ -78,53 +80,34 @@ fun SettingsScreen(
             }
         }
 
-        // Язык
-        ExposedDropdownMenuBox(
-            expanded = isLanguageMenuExpanded,
-            onExpandedChange = { isLanguageMenuExpanded = it }
+        // Выбор языка
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = { showLanguageDialog = true }
         ) {
-            OutlinedTextField(
-                value = stringResource(
-                    when (uiState.language) {
-                        Language.SYSTEM -> R.string.language_system
-                        Language.RU -> R.string.language_ru
-                        Language.EN -> R.string.language_en
-                    }
-                ),
-                onValueChange = { },
-                readOnly = true,
-                label = { Text(stringResource(R.string.language)) },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = isLanguageMenuExpanded)
-                },
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .menuAnchor()
-            )
-
-            ExposedDropdownMenu(
-                expanded = isLanguageMenuExpanded,
-                onDismissRequest = { isLanguageMenuExpanded = false }
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Language.values().forEach { language ->
-                    DropdownMenuItem(
-                        text = {
-                            Text(
-                                stringResource(
-                                    when (language) {
-                                        Language.SYSTEM -> R.string.language_system
-                                        Language.RU -> R.string.language_ru
-                                        Language.EN -> R.string.language_en
-                                    }
-                                )
-                            )
-                        },
-                        onClick = {
-                            viewModel.updateLanguage(language)
-                            isLanguageMenuExpanded = false
-                        }
+                Column {
+                    Text(
+                        text = stringResource(R.string.language),
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        text = uiState.availableLanguages.find { 
+                            it.code == uiState.selectedLanguage 
+                        }?.name ?: "",
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null
+                )
             }
         }
 
@@ -161,5 +144,39 @@ fun SettingsScreen(
                 }
             }
         }
+    }
+
+    if (showLanguageDialog) {
+        AlertDialog(
+            onDismissRequest = { showLanguageDialog = false },
+            title = { Text(stringResource(R.string.select_language)) },
+            text = {
+                Column {
+                    uiState.availableLanguages.forEach { language ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    viewModel.setLanguage(language.code)
+                                    showLanguageDialog = false
+                                }
+                                .padding(vertical = 12.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(language.name)
+                            if (language.code == uiState.selectedLanguage) {
+                                Icon(
+                                    imageVector = Icons.Default.Check,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {}
+        )
     }
 } 
