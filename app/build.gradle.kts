@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.androidx.material3)
 
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.datastore.preferences)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
